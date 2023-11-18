@@ -199,7 +199,10 @@ class HornAPI:
 		# TODO: Do something with `self`-like in static..
 		# TODO: Move to consts..?
 
-		logger.info('[cyan]Updating repo..', extra={'markup': True})
+		logger.info(
+			'[cyan]Updating repo..',
+			extra={'markup': True},
+		)
 
 		HornAPI.download_file(url=ROOT_REPO_SOURCES_URL, save_path=repo_zipfile)
 		HornAPI.unpack_archive(filepath=repo_zipfile, path=API_DATA)
@@ -375,7 +378,8 @@ class HornAPI:
 
 		logger.info(
 			'Unpacking `[blue]%s[/]` to path `[cyan]%s[/]`',  # TODO/FIXME: Fix colors..
-			filepath, path, extra={'markup': True},
+			filepath, path,
+			extra={'markup': True},
 		)
 		# Unpack using zip/tar & etc.
 		return HornAPI.unpack_archive(filepath=filepath, path=path)
@@ -386,6 +390,8 @@ class HornAPI:
 		name: str, version: str = '*',
 		path: str | Path,  # TODO: .. Replace os's `~`..
 	) -> Status:
+		path = Path(path).expanduser()
+		# TODO: (Optional) Hide in logs home dir..
 		if version not in ('*',):
 			logger.info("Searching package `'%s'==%s`", name, version)
 		else:
@@ -407,12 +413,19 @@ class HornAPI:
 			msg = "No download link & git download isn't implemented yet.."
 			raise DownloadError(msg)
 
-		logger.info("[yellow]Installing package[/] `'%s'==%s`", mod.name, mod.version)
+		logger.info(
+			"[yellow]Installing package[/] `'%s'==%s`",
+			mod.name, mod.version,
+			extra={'markup': True},  # FIXME: Duplication.. .. ..
+		)
 		pkg_filepath: Path = self.download_package(url=mod.link)
-		self.unpack_package(filepath=pkg_filepath, path=path)
+		install_path: Path = Path(path, mod.name)
+		install_path.mkdir()  # TODO: Handle if installed.. (mb optional reinstall/skip or etc.)
+		self.unpack_package(filepath=pkg_filepath, path=install_path)
 		logger.info(
 			"[green]Installation of package[/] `'%s'==%s` [green]complete!",
 			mod.name, mod.version,
+			extra={'markup': True},
 		)
 
 		return True

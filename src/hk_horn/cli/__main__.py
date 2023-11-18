@@ -33,20 +33,22 @@ def get_version_from_pyproject_toml(fp: str | Path = Path('pyproject.toml')) -> 
 	return '--'
 
 
-horn = None
+horn: type[HornAPI] = HornAPI
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version=get_version_from_pyproject_toml())
 def cli():
 	global horn
-	horn = HornAPI
 	# TODO: Handle update command(s) before init..
 	horn.update_repo()
 	horn = horn()
 
 
 # TODO: (Auto) Check & Update modlinks repo
+# TODO: ...
+# TODO: Mod/Package remove command..
+# TODO: Mod/Package disable command..
 # TODO: Command to manage & install HKMA..
 # TODO: Command to set/download/manage repo list
 # TODO: Configs..
