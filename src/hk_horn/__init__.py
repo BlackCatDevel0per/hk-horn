@@ -2,7 +2,7 @@ import logging
 
 from rich.logging import RichHandler
 
-from .horn import HornAPI  # noqa: F401
+from .api import HornAPI  # noqa: F401
 
 __all__ = (
 	'HornAPI',

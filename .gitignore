@@ -18,6 +18,7 @@ dist
 *.prof
 
 modlinks
+modlinks_
 
 test.py
 

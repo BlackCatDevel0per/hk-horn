@@ -4,10 +4,11 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import click
+from rich import print as rp
+
 from hk_horn import HornAPI
 from hk_horn.enums import ModAttrs
 from hk_horn.models import Mod
-from rich import print as rp
 
 if TYPE_CHECKING:
 	from typing import Any
@@ -32,13 +33,23 @@ def get_version_from_pyproject_toml(fp: str | Path = Path('pyproject.toml')) -> 
 	return '--'
 
 
-horn = HornAPI()
+horn = None
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version=get_version_from_pyproject_toml())
 def cli():
-	...
+	global horn
+	horn = HornAPI
+	# TODO: Handle update command(s) before init..
+	horn.update_repo()
+	horn = horn()
+
+
+# TODO: (Auto) Check & Update modlinks repo
+# TODO: Command to manage & install HKMA..
+# TODO: Command to set/download/manage repo list
+# TODO: Configs..
 
 
 def parse_opts(

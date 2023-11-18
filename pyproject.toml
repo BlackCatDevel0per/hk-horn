@@ -6,6 +6,11 @@ authors = ["BlackCatDevel0per <bcdev@mail.ru>"]
 license = "Apache 2.0"
 readme = "README.md"
 
+packages = [
+	{ include = "horn.py", from = "src/hk_horn" },
+	{ include = "hk_horn", from = "src" },
+]
+
 classifiers = [  # TODO: Add game..
     "License :: OSI Approved :: Apache Software License",
     "Development Status :: 5 - Production/Stable",
@@ -94,7 +99,7 @@ ignore = [
 	"S101",
 ]  # Add RET503?
 
-src = ["src/hk_horn", "tests", "scripts", "examples"]
+src = ["src/hk_horn", "src/horn", "tests", "scripts", "examples"]
 exclude = [
     ".git",
     "build",
@@ -113,6 +118,10 @@ inline-quotes = "single"
 
 [tool.ruff.format]
 indent-style = "tab"
+
+
+[tool.poetry.scripts]
+horn = "src.hk_horn.horn:cli"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
