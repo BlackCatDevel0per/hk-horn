@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "hn-horn"
+name = "hk-horn"
 version = "0.0.1"
 description = "Hollow Knight Mods Manager =)"
 authors = ["BlackCatDevel0per <bcdev@mail.ru>"]
