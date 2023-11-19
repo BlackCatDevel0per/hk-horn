@@ -33,7 +33,7 @@ def get_version_from_pyproject_toml(fp: str | Path = Path('pyproject.toml')) -> 
 	return '--'
 
 
-horn: type[HornAPI] = HornAPI
+horn: HornAPI = HornAPI  # type: ignore
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)

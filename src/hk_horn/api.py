@@ -48,6 +48,8 @@ __all__ = (
 # TODO: Multiversion & compatibility
 # TODO: i18n
 
+# TODO: More handle `Path.mkdir` with `parents=True` arg..
+
 
 logger = logging.getLogger(__name__)  ##
 
@@ -188,7 +190,7 @@ class HornAPI:
 	@staticmethod
 	def update_repo(*, overwrite: bool = False) -> true:
 		# TODO: Mb make dirs startup..??
-		API_DATA.mkdir(exist_ok=True)
+		API_DATA.mkdir(parents=True, exist_ok=True)
 		# TODO: More checks..
 		# TODO: Catch & warnings..
 		# TODO: On repo data missing warning..|/- ....
@@ -348,7 +350,7 @@ class HornAPI:
 	) -> Path:
 
 		# TODO: Install if package in cache..
-		PACKAGES_CACHE.mkdir(exist_ok=True)
+		PACKAGES_CACHE.mkdir(parents=True, exist_ok=True)
 
 		file_name = HornAPI.get_filename_from(url=url)
 
@@ -420,7 +422,7 @@ class HornAPI:
 		)
 		pkg_filepath: Path = self.download_package(url=mod.link)
 		install_path: Path = Path(path, mod.name)
-		install_path.mkdir()  # TODO: Handle if installed.. (mb optional reinstall/skip or etc.)
+		install_path.mkdir(parents=True)  # TODO: Handle if installed.. (mb optional reinstall/skip or etc.)
 		self.unpack_package(filepath=pkg_filepath, path=install_path)
 		logger.info(
 			"[green]Installation of package[/] `'%s'==%s` [green]complete!",
