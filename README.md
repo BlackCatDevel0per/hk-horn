@@ -5,7 +5,7 @@ Hollow Knight Mods (Packages) Manager =)
 
 ## Installation..
 ```bash
-pip install --upgrade hk_horns
+pip install --upgrade hk_horn
 ```
 
 ## Usage

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hk-horn"
-version = "0.0.4"
+version = "0.0.5"
 description = "Hollow Knight Mods Manager =)"
 authors = ["BlackCatDevel0per <bcdev@mail.ru>"]
 license = "Apache 2.0"
