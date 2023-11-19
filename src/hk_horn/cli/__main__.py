@@ -113,6 +113,7 @@ def info(*, name: str, version: str) -> None:
 	rp(mod)
 
 
+# TODO: Game paths groups with config..
 @cli.command()
 @click.argument('name')
 @click.option('--path', help='Path to install mod', required=True)
