@@ -32,7 +32,7 @@ Commands:
 
 ### Mods search
 ```bash
-horn find --name Hk --display=no
+horn find --display=no --name Hk
 ```
 #### output:
 ```bash
@@ -104,7 +104,7 @@ Mod(
 
 ### Mods installation (will update in future)
 ```bash
-horn install  'HKMP','Satchel' --path=/path/to/game/mods/dir/Games/Hollow\ Knight/Hollow\ Knight_Data/Managed/Mods
+horn install --path="/path/to/game/mods/dir/Games/Hollow Knight/Hollow Knight_Data/Managed/Mods" 'HKMP','Satchel'
 ```
 #### output:
 ```bash
