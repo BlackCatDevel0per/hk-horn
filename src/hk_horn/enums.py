@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from .consts import MOD_NSMAP
 
 if TYPE_CHECKING:
-	from .types import Text
+	from .type_annotations import Text
 
 __all__ = (
 	'ModTags',

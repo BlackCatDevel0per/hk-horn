@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 
 	from lxml.etree import Element, ElementTree, XMLSchema
 
-	from .types import FilePath, ModField, Status, true
+	from .type_annotations import FilePath, ModField, Status, true
 
 __all__ = (
 	'logger',
@@ -49,6 +49,8 @@ __all__ = (
 # TODO: i18n
 
 # TODO: More handle `Path.mkdir` with `parents=True` arg..
+
+# TODO: More parsers support
 
 
 logger = logging.getLogger(__name__)  ##
@@ -283,8 +285,9 @@ class HornAPI:
 
 		# TODO: Make it rich..
 		logger.info(
-			'Searching field(s) ptrn(s) `%s`',
+			'Searching field(s) ptrn(s) [yellow]`%s`[/]',
 			str(fields_),
+			extra={'markup': True},
 		)
 
 		result: list[Mod] = []
@@ -357,10 +360,18 @@ class HornAPI:
 		# Download using grequests
 		save_file_path = Path(PACKAGES_CACHE, file_name)
 		if save_file_path.exists():
-			logger.info('File exists in cache `%s`', save_file_path)
+			logger.info(
+				'File exists in cache [yellow]`%s`[/]',
+				save_file_path,
+				extra={'markup': True},
+			)
 			return save_file_path
 
-		logger.info('Downloading `%s` to path `%s`', url, save_file_path)
+		logger.info(
+			'Downloading [yellow]`%s`[/] to path [yellow]`%s`[/]',
+			url, save_file_path,
+			extra={'markup': True},
+		)
 		HornAPI.download_file(url, save_file_path)
 
 		return save_file_path
@@ -394,21 +405,39 @@ class HornAPI:
 	) -> Status:
 		path = Path(path).expanduser()
 		# TODO: (Optional) Hide in logs home dir..
+		# TODO: Change colors..
 		if version not in ('*',):
-			logger.info("Searching package `'%s'==%s`", name, version)
+			logger.info(
+				"Searching package [violet]`'%s'==%s`[/]",
+				name, version,
+				extra={'markup': True},
+			)
 		else:
-			logger.info("Searching package '%s'", name)
+			logger.info(
+				"Searching package [violet]'%s'[/]",
+				name,
+				extra={'markup': True},
+			)
 		mod: Mod = self.find_mod_by(  # type: ignore
 			fields={ModAttrs.name: f'^{name}$', ModAttrs.version: version},
 			stop=1,
 		)
 
+		# TODO: Update logic..
 		if not mod:
 			# FIXME: Duplications..
 			if version not in ('*',):
-				logger.info("Package `'%s'==%s` not found..", name, version)
+				logger.info(
+					"Package [violet]`'%s'==%s`[/] not found..", name, version,
+					extra={'markup': True},
+				)
 			else:
-				logger.info("Package '%s' not found", name)
+				# TODO: Change color..
+				logger.info(
+					"Package [violet]'%s'[/] not found",
+					name,
+					extra={'markup': True},
+				)
 			return False
 
 		if not mod.link:
@@ -416,16 +445,19 @@ class HornAPI:
 			raise DownloadError(msg)
 
 		logger.info(
-			"[yellow]Installing package[/] `'%s'==%s`",
+			"[yellow]Installing package[/] [violet]`'%s'==%s`[/]",
 			mod.name, mod.version,
 			extra={'markup': True},  # FIXME: Duplication.. .. ..
 		)
 		pkg_filepath: Path = self.download_package(url=mod.link)
 		install_path: Path = Path(path, mod.name)
-		install_path.mkdir(parents=True)  # TODO: Handle if installed.. (mb optional reinstall/skip or etc.)
+
+		# TODO: Handle if installed.. (mb optional reinstall/skip or etc.)
+		install_path.mkdir(parents=True)
+
 		self.unpack_package(filepath=pkg_filepath, path=install_path)
 		logger.info(
-			"[green]Installation of package[/] `'%s'==%s` [green]complete!",
+			"[green]Installation of package[/] [violet]`'%s'==%s`[/] [green]complete!",
 			mod.name, mod.version,
 			extra={'markup': True},
 		)
