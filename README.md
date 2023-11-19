@@ -56,6 +56,10 @@ horn find --name HK
 
 ### Mod info
 ```bash
+horn info HKMP
+```
+or
+```bash
 horn info HKMP --version 2.4.1.0
 ```
 #### output:
