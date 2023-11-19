@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hk-horn"
-version = "0.0.3"
+version = "0.0.4"
 description = "Hollow Knight Mods Manager =)"
 authors = ["BlackCatDevel0per <bcdev@mail.ru>"]
 license = "Apache 2.0"
@@ -9,6 +9,13 @@ readme = "README.md"
 packages = [
 	{ include = "horn.py", from = "src/hk_horn" },
 	{ include = "hk_horn", from = "src" },
+]
+
+keywords = [
+	"package-manager",
+	"mod",
+	"mod-manager",
+	"hollow-knight",
 ]
 
 classifiers = [  # TODO: Add game..
@@ -27,6 +34,11 @@ classifiers = [  # TODO: Add game..
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Communications :: Chat",
 ]
+
+[project.urls]
+Homepage = "https://github.com/BlackCatDevel0per/hk-horn"
+Documentation = "https://github.com/BlackCatDevel0per/hk-horn"  # TODO: ...
+Repository = "https://github.com/BlackCatDevel0per/hk-horn"
 
 [tool.ruff]
 line-length = 100
