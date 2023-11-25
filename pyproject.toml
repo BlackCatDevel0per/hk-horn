@@ -35,6 +35,7 @@ classifiers = [  # TODO: Add game..
     "Topic :: Communications :: Chat",
 ]
 
+[tool.poetry.urls]
 Homepage = "https://github.com/BlackCatDevel0per/hk-horn"
 Documentation = "https://github.com/BlackCatDevel0per/hk-horn"  # TODO: ...
 Repository = "https://github.com/BlackCatDevel0per/hk-horn"
