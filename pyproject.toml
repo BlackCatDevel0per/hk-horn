@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hk-horn"
-version = "0.0.8"
+version = "0.0.9"
 description = "Hollow Knight Mods Manager =)"
 authors = ["BlackCatDevel0per <bcdev@mail.ru>"]
 license = "Apache 2.0"
@@ -35,7 +35,6 @@ classifiers = [  # TODO: Add game..
     "Topic :: Communications :: Chat",
 ]
 
-[project.urls]
 Homepage = "https://github.com/BlackCatDevel0per/hk-horn"
 Documentation = "https://github.com/BlackCatDevel0per/hk-horn"  # TODO: ...
 Repository = "https://github.com/BlackCatDevel0per/hk-horn"
