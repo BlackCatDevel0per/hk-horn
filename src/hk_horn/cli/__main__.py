@@ -46,6 +46,9 @@ def cli():
 
 # TODO: List command (installed, repo & etc.)
 
+# TODO: Check updates
+# TODO: Offline mode features..
+
 # TODO: (Auto) Check & Update modlinks repo
 # TODO: ...
 # TODO: Mod/Package remove command..

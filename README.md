@@ -3,6 +3,8 @@ Hollow Knight Mods (Packages) Manager =)
 
 (In current time in Alpha..)
 
+[![Downloads](https://static.pepy.tech/badge/hk-horn)](https://pepy.tech/project/hk-horn)
+
 ## Installation..
 ```bash
 pip install --upgrade hk_horn
